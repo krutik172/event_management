@@ -1,0 +1,36 @@
+<div class="container">
+<h1>Organised Events</h1>
+<p>Your Address : 
+<% if current_user.address %>
+<%= @address.city %>
+<% end %>
+
+</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#id</th>
+      <th scope="col">event Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Date</th>
+      <th scope="col">Owner</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  <% @organised_events.each do |event|%>
+    <tr>
+      <th scope="row"><%= event.id %></th>
+      <td><%= event.name %></td>
+      <td><%= event.description %></td>
+      <td><%= event.event_date %></td>
+      <td><%= event.organisor.email %></td>
+      <td><a  type="submit" class="btn btn-primary" href="/events/<%= event.id %>/edit">Edit</button></a></td>
+
+
+
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

@@ -1,0 +1,51 @@
+<div class="container">
+<h1>New Event</h1>
+
+<%=  form_with(url: events_path, model: @event, method: :post ) do |form| %>
+
+    <div class="row">  
+      <div class="col-4">
+        <%= form.label :name %>
+        <%= form.text_field :name, class: "form-control" %>
+        </div>
+    </div>
+<br>
+    
+    <div class="row">  
+      <div class="col-4">
+        <%= form.label :event_date %>
+        <%= form.date_field :event_date,  class: "form-control" %>
+    </div>
+    </div>
+<br>
+    <div class="row">  
+      <div class="col-4">
+        <%= form.label :description %>
+        <%= form.text_field :description,  class: "form-control" %>
+    </div>
+    </div>
+    
+    <br>
+
+      <div class="row">  
+      <div class="col-4">
+        <%= form.label :category_id %>
+        
+        <% options = options_from_collection_for_select(@categories, 'id', 'category_type') %>
+        <%= form.select :category_id, options,  class: "form-control btn btn-secondary dropdown-toggle" %>
+        </div>
+    </div>
+    <%= form.submit class: "btn btn-primary " %>
+<% end %>
+
+  <% if @event.errors.any? %>
+  <div id="error_explanation">
+    <h2> Errors: </h2>
+    <ul>
+      <% @event.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+        <%end %>
+    </ul>
+  </div>
+  <% end %>
+</div>

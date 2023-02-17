@@ -1,0 +1,47 @@
+
+<div class="container">
+<h2><b><%= @event.name %></b></h2>
+<br>
+<br>
+<h4> Comments </h4>
+    <% @comments.each do |comment| %>
+        <p><b><%= comment.user.email %></b></p>
+        <p> <%= comment.description %>
+        <p> 
+            <% if @liked_comments.include? comment.id %>
+            
+            <a href="<%= @event.id %>/unlike/<%= comment.id %>">Unlike</a> 
+            <% else %>
+            <a href="<%= @event.id %>/like/<%= comment.id %>">Like</a>  
+        
+            <% end %>
+            <%= comment.likes.count %>
+        </p>
+        <hr>
+    <% end %>
+</div>
+
+
+<%=  form_with(url: comments_path, model: @comment, method: :post ) do |form| %>
+  <div class="row">  
+      <div class="col-4">
+        <%= form.label :Add %>
+        <%= form.text_field :description,  class: "form-control" %>
+<%= form.hidden_field :event_id, value: @event.id %>
+    </div>
+    </div>
+    
+    <br>
+  <%= form.submit class: "btn btn-primary " %>
+<% end %>
+<% if @comment.errors.any? %>
+  <div id="error_explanation">
+    <h2> Errors: </h2>
+    <ul>
+      <% @comment.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+        <%end %>
+    </ul>
+  </div>
+  <% end %>
+

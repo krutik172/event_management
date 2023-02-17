@@ -1,0 +1,54 @@
+<div class="container">
+<%=  form_with(url: events_index_path, model: @category, method: :get ) do |form| %>
+
+        <%= form.label :category_id %>
+        
+        <% options = options_from_collection_for_select(@categories, 'id', 'category_type') %>
+        <%= form.select :category_id, options,  class: "form-control btn btn-secondary dropdown-toggle" %>
+
+<%= form.submit class: "btn btn-primary " %>
+<% end %>
+
+<br>
+<div>
+<a href="/events">Clear Filter<a>
+</div>
+<br>
+<h1>All Events</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#id</th>
+      <th scope="col">event Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Date</th>
+      <th scope="col">Owner</th>
+      <th scope="col">Category</th>
+
+
+      
+    </tr>
+  </thead>
+  <tbody>
+  <% @events.each do |event|%>
+    <tr>
+      <th scope="row"><%= event.id %></th>
+      <td><%= event.name %></td>
+      <td><%= event.description %></td>
+      <td><%= event.event_date %></td>
+      <td><%= event.organisor.email %></td>
+      <td><%= event.category.category_type %></td>
+
+      <%if current_user %>
+      <td><a  type="submit" class="btn btn-primary" href="/events/details/<%= event.id %>">Show Comments</button></a></td>
+
+      <% if ! current_user.events.include? event %>
+      <td><a  type="submit" class="btn btn-primary" href="/events/enroll/<%= event.id %>">Enroll</button></a></td>
+      <% end %>
+      <%end %>
+
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
