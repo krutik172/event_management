@@ -1,0 +1,47 @@
+
+
+<%=  form_with(model: order ) do |form| %>
+
+
+  <div class="row">  
+      <div class="col-4">
+        <%= form.label :product %>
+        
+        <% options = options_from_collection_for_select(@products, 'id', 'name') %>
+        <%= form.select :product_id, options,  class: "form-control dropdown-menu" %>
+        </div>
+    </div>
+    <br>    
+
+ <div class="row">  
+    <div class="col-4">
+      <%= form.label :customer %>
+      <%= form.text_field :customer, class: "form-control" %>
+      </div>
+  </div>
+<br>
+
+ <div class="row">  
+    <div class="col-4">
+      <%= form.label :quantity %>
+      <%= form.number_field :quantity, class: "form-control" %>
+      </div>
+  </div>
+<br>
+
+
+    <%= form.submit class: "btn btn-primary " %>
+<% end %>
+
+ <% if @order.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@order.errors.count, "error") %> prohibited this article from being saved:</h2>
+    <ul>
+      <% @order.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<br>
+<div>

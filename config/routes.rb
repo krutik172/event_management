@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :products
   devise_for :users
   resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -14,6 +15,10 @@ Rails.application.routes.draw do
   # get "events/:id/edit", to: "events#edit"
   # post "events/update/:id", to: "events#update", as: :update_event
 
+  get "orders/all", to: "orders#index", as: "all_orders"
+
+  resources :orders
+  resources :products
   resources :events
   resources :comments
 end
