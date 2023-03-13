@@ -1,0 +1,40 @@
+
+<table class="table table-striped  text-center">
+  <thead>
+    <th scope="col">ID</th>
+    <th scope="col">Item</th>
+    <th scope="col">Quantity</th>
+    <th scope="col">Total</th>
+    <th scope="col">Customer</th>
+    <th scope="col">Status</th>
+  </thead>
+  <tbody>
+     <% @orders.each do |order|   %> 
+    <tr>    
+      <td><%=  order.id  %> </td>
+      <td><%=  order.product.name %> </td>
+      <td><%=  order.quantity  %> </td>
+
+      <td><%=  order.customer %> </td>
+
+       <td>
+        <div>
+        <%= button_to "Edit", edit_order_path(order), method: :get, class: "btn btn-primary"%>
+        </div>
+      </td>
+
+      <td>
+            <div>
+                <%= link_to "Delete", order_path(order), class: "btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "item will be deleted ?" } %>
+            </div>
+        </td>
+    </tr>
+  <% end %>   
+  <tbody>
+  </table>
+
+
+<div>
+    <a class="btn btn-primary" type="submit" href="/orders/new">New Order</a>
+</div>
+<br>
