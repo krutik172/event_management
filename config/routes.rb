@@ -16,4 +16,5 @@ Rails.application.routes.draw do
 
   resources :events
   resources :comments
+  resources :employees
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_20_115044) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_15_110146) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,6 +46,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_20_115044) do
     t.index ["users_id"], name: "index_comments_on_users_id"
   end
 
+  create_table "employees", force: :cascade do |t|
+    t.string "employee_name"
+    t.string "email"
+    t.integer "gender"
+    t.string "hobbies"
+    t.bigint "mobile_number"
+    t.date "birth_date"
+    t.string "document"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -66,6 +78,34 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_20_115044) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.string "house"
+    t.string "society"
+    t.string "road"
+    t.string "area"
+    t.string "city"
+    t.integer "pincode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "employees_id"
+    t.index ["employees_id"], name: "index_locations_on_employees_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "customer"
+    t.bigint "product_id"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "registrations", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "event_id"
@@ -83,6 +123,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_20_115044) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -94,6 +135,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_20_115044) do
   add_foreign_key "events", "users", column: "organisor_id"
   add_foreign_key "likes", "comments"
   add_foreign_key "likes", "users"
+  add_foreign_key "orders", "products"
   add_foreign_key "registrations", "events"
   add_foreign_key "registrations", "users"
 end

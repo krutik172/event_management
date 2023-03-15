@@ -1,0 +1,93 @@
+<%= form_with model: employee do |form| %>
+  <div class="row">  
+    <div class="col-4">
+      <%= form.label :employee_name %>
+      <%= form.text_field :employee_name, class: "form-control" %>
+      </div>
+  </div>
+  <br>
+
+<div class="row">  
+      <div class="col-4">
+        <%= form.label :gender %>
+        <%= form.select :gender, Employee.genders.keys %>
+        </div>
+    </div>
+    <br>
+  <div class="row">  
+    <div class="col-4">
+      <%= form.label :mobile_number %>
+      <%= form.number_field :mobile_number, class: "form-control" %>
+    </div>
+  </div>
+  <br>
+
+  <div class="row">  
+    <div class="col-4">
+      <%= form.label :email %>
+      <%= form.text_field :email, class: "form-control" %>
+      </div>
+  </div>
+  <br>
+
+
+  <div class="row">  
+    <div class="col-4">
+      <%= form.label :birth_date %>
+      <%= form.date_field :birth_date, class: "form-control" %>
+      </div>
+  </div>
+  <br>
+
+  <div class="row">  
+    <div class="col-4">
+      <%= form.label :Document %>
+      <%= form.file_field :document, class: "form-control" %>
+      </div>
+  </div>
+  <br>
+
+Address:
+  <ul>
+    <%= form.fields_for :addresses do |addresses_form| %>
+      <li>
+        <%= addresses_form.label :house %>
+        <%= addresses_form.text_field :kindhouse %>
+
+        <%= addresses_form.label :society %>
+        <%= addresses_form.text_field :society %>
+
+        <%= addresses_form.label :road %>
+        <%= addresses_form.text_field :road %>
+
+        <%= addresses_form.label :area %>
+        <%= addresses_form.text_field :area %>
+<br>
+        <%= addresses_form.label :city %>
+        <%= addresses_form.text_field :city %>
+
+        <%= addresses_form.label :pincode %>
+        <%= addresses_form.number_field :pincode %>
+        
+      </li>
+    <% end %>
+  </ul>
+  <%= form.submit class: "btn btn-primary " %>
+<% end %>
+
+
+ <% if @employee.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this article from being saved:</h2>
+    <ul>
+      <% @employee.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<br>
+
+
+
+  
