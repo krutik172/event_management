@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+ .image-size {
+    max-width: 300px;
+    max-height: 200px;
+  }
+
+  .img-container img {
+    width: 300px;
+  }

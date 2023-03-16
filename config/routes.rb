@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   # get "events/:id/edit", to: "events#edit"
   # post "events/update/:id", to: "events#update", as: :update_event
 
+  get  "/search", to: "employees#search"
   resources :events
   resources :comments
   resources :employees

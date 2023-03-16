@@ -38,6 +38,13 @@
       </div>
   </div>
   <br>
+    <div class="row">  
+    <div class="col-4">
+      <%= form.label :hobbies %>
+      <%= form.text_field :hobbies, class: "form-control" %>
+    </div>
+  </div>
+  <br>
 
   <div class="row">  
     <div class="col-4">
@@ -49,25 +56,25 @@
 
 Address:
   <ul>
-    <%= form.fields_for :addresses do |addresses_form| %>
+    <%= form.fields_for :locations do |locations_form| %>
       <li>
-        <%= addresses_form.label :house %>
-        <%= addresses_form.text_field :kindhouse %>
+        <%= locations_form.label :house %>
+        <%= locations_form.text_field :house %>
 
-        <%= addresses_form.label :society %>
-        <%= addresses_form.text_field :society %>
+        <%= locations_form.label :society %>
+        <%= locations_form.text_field :society %>
 
-        <%= addresses_form.label :road %>
-        <%= addresses_form.text_field :road %>
+        <%= locations_form.label :road %>
+        <%= locations_form.text_field :road %>
 
-        <%= addresses_form.label :area %>
-        <%= addresses_form.text_field :area %>
+        <%= locations_form.label :area %>
+        <%= locations_form.text_field :area %>
 <br>
-        <%= addresses_form.label :city %>
-        <%= addresses_form.text_field :city %>
+        <%= locations_form.label :city %>
+        <%= locations_form.text_field :city %>
 
-        <%= addresses_form.label :pincode %>
-        <%= addresses_form.number_field :pincode %>
+        <%= locations_form.label :pincode %>
+        <%= locations_form.number_field :pincode %>
         
       </li>
     <% end %>
@@ -76,9 +83,9 @@ Address:
 <% end %>
 
 
- <% if @employee.errors.any? %>
+ <% if employee.errors.any? %>
   <div id="error_explanation">
-    <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this article from being saved:</h2>
+    <h2><%= pluralize(employee.errors.count, "error") %> prohibited this article from being saved:</h2>
     <ul>
       <% @employee.errors.each do |error| %>
         <li><%= error.full_message %></li>

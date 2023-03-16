@@ -10,6 +10,6 @@ class CreateLocations < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
-    add_reference :locations, :employees, foregin_key: true
+    add_reference :locations, :employee, foregin_key: true
   end
 end

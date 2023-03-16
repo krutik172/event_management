@@ -87,8 +87,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_110146) do
     t.integer "pincode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "employees_id"
-    t.index ["employees_id"], name: "index_locations_on_employees_id"
+    t.bigint "employee_id"
+    t.index ["employee_id"], name: "index_locations_on_employee_id"
   end
 
   create_table "orders", force: :cascade do |t|

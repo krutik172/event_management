@@ -4,8 +4,8 @@
 <%=  form_with(url: "/search",method: :get, autocomplete: "off" ) do |form| %>
   <div class="row">  
       <div class="col-4">
-        <%= form.label :email %>
-        <%= form.text_field :email, value: nil,  placeholder: "Enter name.."  %>
+        <%= form.label :query %>
+        <%= form.text_field :query, value: nil,  placeholder: "Enter name.."  %>
         <%= submit_tag ("Search")%>
         </div>
         <% if @msg %>
@@ -27,72 +27,21 @@
     <th scope="col">Phone Number</th>
     <th scope="col">Birth Date</th>
     <th scope="col">Hobbies</th>
+    <th scope="col">Location</th>
+
     <th scope="col">Document</th>
   </thead>
 
   <tbody>
   <% if @employee %>
-    <tr>
-      <td><%=  @employee.id  %> </td>
-      <td><%=  @employee.employee_name %> </td>
-      <td><%=  @employee.gender %> </td>
-      <td><%=  @employee.email %> </td>
-      <td><%=  @employee.phone_number  %> </td>
-      <td><%=  @employee.birth_date %> </td>
-      <td><%=  @employee.hobbies  %> </td>
-      <td><%=  @employee.document  %> </td>
-
-       <td>
-        <div>
-      <%= button_to "Edit", edit_employee_path(@employee)  %>
-
-        </div>
-        
-      </td>
-
-      <td>
-      <div>
-      <%= button_to "Delete", employee_path(@employee), :method => 'delete'  %>
-      </div>
-      </td>
-    </tr>
-
+      <%= render "employee", employee: @employee %>
   <% else %>
-
     <% @employees.each do |employee|   %> 
-  
-      <tr>
-      <td><%=  employee.id  %> </td>
-      <td><%=  employee.employee_name %> </td>
-      <td><%=  employee.gender %> </td>
-      <td><%=  employee.email %> </td>
-      <td><%=  employee.mobile_number  %> </td>
-      <td><%=  employee.birth_date %> </td>
-      <td><%=  employee.hobbies  %> </td>
-      <td><%=  employee.document  %> </td>
-
-       <td>
-        <div>
-      <%= button_to "Edit", edit_employee_path(employee)  %>
-
-        </div>
-        
-      </td>
-
-      <td>
-      <div>
-      <%= button_to "Delete", employee_path(employee), :method => 'delete'  %>
-      </div>
-      </td>
-      </tr>
+      <%= render "employee", employee: employee %>
     <% end %>
   <% end %>   
   <tbody>
   </table>
 <div>
     <a class="btn btn-primary" type="submit" href="/employees/new">Register employee</a>
-</div>
-<br>
-<div>
-      <a class="btn btn-primary" type="submit" href="/employees/show_employee">Show filtered employee</a>
 </div>
