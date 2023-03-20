@@ -1,0 +1,32 @@
+ <tr>
+  <td><%=  employee.id  %> </td>
+      <td><%=  employee.employee_name %> </td>
+      <td><%=  employee.gender %> </td>
+      <td><%=  employee.email %> </td>
+      <td><%=  employee.mobile_number  %> </td>
+      <td><%=  employee.birth_date %> </td>
+      <td><%=  employee.hobbies  %> </td>
+            <% address = employee.locations.first %>
+      <td><%=  address.house%>, <%=  address.society %>, <%=  address.area %>, <%=  address.road %>, <%=  address.city %> - <%=  address.pincode %></td>
+
+      <td>
+        <% if employee.document %>
+            <%= image_tag(employee.document.url, alt: 'Image', height: "50") %> 
+        <%end%>
+      </td>
+       <td>
+      <div>
+          <%= link_to "Show", employee_path(employee)  %>
+      </div>
+      </td>
+      <td>
+      <div>
+          <%= button_to "Edit", edit_employee_path(employee)  %>
+      </div>
+      </td>
+      <td>
+          <div>
+              <%= button_to "Delete", employee_path(employee), :method => 'delete'  %>
+          </div>
+      </td>
+      </tr>
