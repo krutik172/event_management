@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :comments
 
   has_many :likes
+
+  has_many :post_comments
   
   has_many :registrations
   has_many :events, :through => :registrations
