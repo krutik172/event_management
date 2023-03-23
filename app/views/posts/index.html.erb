@@ -1,19 +1,12 @@
 <p style="color: green"><%= notice %></p>
-
 <h1>Posts</h1>
+<%= turbo_frame_tag id="new_form" do %>
+  <%= link_to "New post", new_post_path %>
+<% end %>
 
 <div id="posts">
   <% @posts.each do |post| %>
-  <div class="card card-body>
-    <%= render post %>
-    </div>
-    <p>
-    <%= turbo_frame_tag "first_turbo_frame" do %>
-      <%= link_to "Show this post", post %>
-      <% end %>
-    </p>
+      <%= render post %>  
   <% end %>
 </div>
-
-<%= link_to "New post", new_post_path %>
 

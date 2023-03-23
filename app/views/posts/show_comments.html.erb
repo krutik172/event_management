@@ -1,0 +1,11 @@
+<%= turbo_frame_tag id="post_comments_#{@post.id}" do %>
+<p><strong>Comments</strong></p>
+    <% @comments.each do |comment| %>
+        <p><strong><%= comment.user.email %></strong></p>
+        <p><%= comment.comment %></p>
+    <% end %>
+<hr>
+  <%= render "new_comment", comment: @comment %>
+    
+    <%= link_to "Hide Comments", posts_path %>
+<% end %>

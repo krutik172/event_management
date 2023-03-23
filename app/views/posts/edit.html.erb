@@ -1,7 +1,8 @@
 <h1>Editing post</h1>
 
-<%= render "form", post: @post %>
-
+    <%= turbo_frame_tag "post_#{@post.id}" do %>
+      <%= render "form", post: @post %>
+    <% end %>
 <br>
 
 <div>

@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   get "events/details/:event_id/unlike/:comment_id", to: "comments#unlike"
   # get "events/:id/edit", to: "events#edit"
   # post "events/update/:id", to: "events#update", as: :update_event
+  get  "posts/show_comments/:id", to: "posts#show_comments", as: :show_comments
+  post "posts/add_comment/:id", to: "posts#add_comment", as: :add_comment
+  get "posts/:id/like", to: "posts#like"
+  get "posts/:id/unlike", to: "posts#unlike"
 
   get  "/search", to: "employees#search"
   resources :events

@@ -1,15 +1,37 @@
-<div id="<%= dom_id post %>">
-  <p>
-    <strong>Title:</strong>
-    <%= post.title %>
-  </p>
+<%= turbo_frame_tag post do %>
 
-  <p>
-    <strong>Description:</strong>
-    <%= post.description %>
-  </p>
+  <div class="card card-body">
+    <p>
+      <strong>
+      <%= post.title %></strong>
+    </p>
 
-  <%= link_to "index", posts_path%>
-
-
-</div>
+    <p>
+      <%= post.description %>
+    </p>
+    <%= link_to "Edit", edit_post_path(post) %>
+<hr>
+    <% if @liked_posts.include? post.id %>
+            
+            <a href="/posts/<%= post.id %>/unlike">Liked</i></a> 
+            
+            <% else %>
+            <a href="/posts/<%= post.id %>/like">Like</a>  
+        
+            <% end %>
+            <%= post.post_likes.count %>
+        </p>
+        <hr>
+    <p>
+      <%= turbo_frame_tag "post_comments_#{post.id}" do %>
+        <%= link_to "Show Comments", show_comments_path(post.id) %>
+      <% end %>
+    </p>
+    <%= button_to "Delete",
+                    post_path(post),
+                    method: :delete,
+                    form: { data: { turbo_frame: "_top" }  },
+                    class: "btn btn-light" %>
+  </div>
+<%end%>
+<br>
