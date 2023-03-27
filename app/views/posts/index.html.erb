@@ -1,0 +1,12 @@
+<p style="color: green"><%= notice %></p>
+<h1>Posts</h1>
+<%= turbo_frame_tag id="new_form" do %>
+  <%= link_to "New post", new_post_path %>
+<% end %>
+
+<div id="posts">
+  <% @posts.each do |post| %>
+      <%= render post %>  
+  <% end %>
+</div>
+
